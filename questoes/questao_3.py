@@ -45,7 +45,51 @@
 # substituindo apenas o comando print(questão...) existente.
 ##
 def main():
-    print("questao 3")
+    LETTERS_IN_ALPHABET = 26
+
+
+def _rotate(char, rot):
+    rotated_char = ord(char)+rot
+    if(char.isupper()):
+        if(rotated_char <= ord('Z')):
+            print()
+            return chr(rotated_char)
+        else:
+            return chr(ord('A')+((rotated_char - ord('A')) % LETTERS_IN_ALPHABET))
+
+    else:
+        if(rotated_char <= ord('z')):
+            return chr(rotated_char)
+        else:
+            return chr(ord('a')+((rotated_char - ord('a')) % LETTERS_IN_ALPHABET))
+
+
+def main():
+    rotated_word = []
+    rotated_phrase = []
+    user_input = input().split()
+    rot_number = user_input[0].split('T')
+
+    if(len(rot_number) != 2 or rot_number[0] != 'RO'):
+        print('Erro')
+        return
+
+    rot_number = int(rot_number[1])
+    del user_input[0]
+    for word in user_input:
+        for char in word:
+            if(char == '.'):
+                rotated_word.append(char)
+            else:
+                if(not char.isalpha()):
+                    print('Erro')
+                    return
+                rotated_word.append(_rotate(char, rot_number))
+        rotated_phrase.append(''.join(rotated_word))
+        rotated_word = []
+
+    print(' '.join(rotated_phrase))
+
 
 
     
