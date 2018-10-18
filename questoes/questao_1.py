@@ -28,7 +28,45 @@
 # substituindo apenas o comando print(questão...) existente.
 ##
 def main():
-    print("questao 1")
+MIN_SENHA = 6
+MAX_SENHA = 12
+MAX_N_DIGIT = 9
+
+senha = input("Digite aqui a sua senha: ")
+
+if(len(senha) < MIN_SENHA):
+    print("Sua senha eh muito pequena")
+elif(len(senha) > MAX_SENHA):
+    print("Sua senha eh muito grande")
+
+elif(not ('$' in senha or '#' in senha or '@' in senha)):
+    print("Sua senha esta invalida, utilize pelo menos um: [$#@]")
+else:
+    temMaisc = False
+    for caractere in senha:
+        if(ord(caractere) in range(ord('A'), ord('Z')+1)):
+            temMaisc = True
+
+    if(temMaisc == False):
+        print("Nao tem nenhuma letra MAIUSCULA")
+
+    else:
+        temNumero = False
+        for caractere in senha:
+            if(ord(caractere) in range(ord('0'), ord('9')+1)):
+                temNumero = True
+        if(temNumero == False):
+            print("Sua senha nao tem nenhum digito")
+        else:
+            temMinusc = False
+            for caractere in senha:
+                if(ord(caractere) in range(ord('a'), ord('z')+1)):
+                    temMinusc = True
+
+            if(temMinusc == False):
+                print("Nao tem nenhuma letra MINUSCULA")
+            else:
+                print("PARABENS SUA SENHA EH MUITO BOA")
     
 
 
